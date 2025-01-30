@@ -1,19 +1,24 @@
-let a = 'user';  // Или любую другую роль
+let a = "spongebob"; // Или любое другое имя персонажа для теста
 let b;
 
 switch (a) {
-    case 'user':
-    case 'client':
-        b = 1;
+    case 'spongebob':
+        b = '| ( · )( · ) |';
         break;
-    case 'admin':
-    case 'manager':
-        b = 2;
+    case 'patrick':
+        b = '/ ( · )( · ) \\';
         break;
-    case 'superadmin':
-        b = 3;
+    case 'squidward':
+        b = '( ( · )( · ) )';
+        break;
+    case 'plankton':
+        b = '| ( · ) |';
+        break;
+    case 'mr. Crabs':
+        b = '|·||·|';
         break;
     default:
-        b = 'Неизвестная роль';
+        b = 'Неизвестный персонаж';
 }
-console.log(b);
+
+console.log(b)
