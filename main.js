@@ -1,1 +1,2 @@
-console.log('My name is Muhammad!');
+let s = Math.random()
+console.log(s)
