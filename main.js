@@ -7,4 +7,4 @@ for (let i = 0; i < numbers.length - 1; i++) {
     else if (numbers[i] < 0) {neg++;}}
 
 console.log("Количество положительных чисел:", pos)
-console.log("Количество отрицательных чисел:", pos)
+console.log("Количество отрицательных чисел:", neg)
