@@ -1,23 +1,42 @@
-const users = [
-    { name: 'Alice', age: 25 },
-    { name: 'Bob', age: 30 },
-    { name: 'Charlie', age: 25 },
-    { name: 'Diana', age: 35 },
-    { name: 'Eve', age: 30 },
-    { name: 'Frank', age: 28 },
-    { name: 'Grace', age: 25 },
-    { name: 'Hannah', age: 41 },
-    { name: 'Ivy', age: 30 },
-    { name: 'Jack', age: 28 },
-];
+const mary = {
+    name: 'Mary',
+    wantApples: 2,
+};
 
-const count = {};
+const alex = {
+    name: 'Alex',
+    wantApples: 1,
+};
 
-for (const user of users) {
-    const age = user.age;
-    count[age] = (count[age] || 0) + 1;
+const mike = {
+    name: 'Mike',
+    wantApples: 5,
+};
+
+const brown = {
+    name: 'Brown',
+    wantApples: 4,
+};
+
+const people = [mary, alex, mike, brown];
+const apples = 11;
+const applesPerPerson = Math.floor(apples / people.length);
+const happy = [];
+const notHappy = [];
+
+for (const person of people) {
+    person.ate = applesPerPerson;
+    person.isHappy = person.ate >= person.wantApples;
+
+    if (person.isHappy) {
+        happy.push(person);
+    } else {
+        notHappy.push(person);
+    }
 }
 
-for (const age in count) {
-    console.log(`Возраст=${age}. Количество людей=${count[age]}`);
-}
+console.log("Довольные:");
+console.log(happy);
+
+console.log("Недовольные:");
+console.log(notHappy);
