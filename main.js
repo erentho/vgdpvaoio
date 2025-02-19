@@ -1,35 +1,23 @@
-const user = {
-    example: [1, 2, 3],
-    'X-Address': {
-        street: 'Ленина',
-        house: '10-Б',
-    },
-    nickname: null,
-    permissions: [true, false],
-    age: 101,
-    emails: ['alice@example.com', 'bob@example.com', 'charlie@example.com', 'peter@example.com'],
-    name: 'Peter Charles',
-    isAdult: true,
-    now: new Date().toISOString(),
-};
+const users = [
+    { name: 'Alice', age: 25 },
+    { name: 'Bob', age: 30 },
+    { name: 'Charlie', age: 25 },
+    { name: 'Diana', age: 35 },
+    { name: 'Eve', age: 30 },
+    { name: 'Frank', age: 28 },
+    { name: 'Grace', age: 25 },
+    { name: 'Hannah', age: 41 },
+    { name: 'Ivy', age: 30 },
+    { name: 'Jack', age: 28 },
+];
 
-let maxLength = 0;
-let longestArray = null;
-let lastElement = null;
+const count = {};
 
-        for (const key in user) {
-        if (Array.isArray(user[key])) {
-
-        const arrayLength = user[key].length;
-        if (arrayLength > maxLength) {
-
-            maxLength = arrayLength;
-
-            longestArray = user[key];
-
-            lastElement = user[key][arrayLength - 1];
-        }
-    }
+for (const user of users) {
+    const age = user.age;
+    count[age] = (count[age] || 0) + 1;
 }
 
-console.log(`Максимальная длина: ${maxLength}. Последнее значение: ${lastElement}`);
+for (const age in count) {
+    console.log(`Возраст=${age}. Количество людей=${count[age]}`);
+}
