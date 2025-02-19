@@ -1,10 +1,15 @@
 
-const person = { age: 10, name: '', child: 'Max' };
-for (const personKey in person) {console.log((`${personKey}: ${person[personKey]}`))
-    
+const person = { age: 27, name: 'Billy', child: 'Max' };
+const keys = [];
+const values = []
+for (const key in person) {
+
+        {keys.push(key);
+        values.push(person[key]);}
+
+
+
 }
-/* Для объекта person ожидаемый вывод:
-age: 10
-name: 
-child: Max
-*/
+
+console.log("Ключи:", keys);
+console.log("Значения:", values);
