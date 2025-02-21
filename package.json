@@ -1,0 +1,16 @@
+{
+  "name": "ttt",
+  "version": "1.0.0",
+  "main": "main.js",
+
+  "scripts": {},
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 120,
+    "tabWidth": 2,
+    "endOfLine": "lf"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
