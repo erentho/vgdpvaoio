@@ -4,7 +4,6 @@
   "main": "main.js",
   "scripts": {
     "start": "ts-node ./src/main.ts"
-
   },
   "repository": {
     "type": "git",
@@ -31,11 +30,15 @@
     "eslint-plugin-unused-imports": "^4.1.4",
     "prettier": "^3.5.1",
     "typescript-eslint": "^8.24.1"
-  },  "prettier": {
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 120,
-  "tabWidth": 2,
-  "endOfLine": "lf"
-}
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 120,
+    "tabWidth": 2,
+    "endOfLine": "lf"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
 }
