@@ -6,3 +6,4 @@ enum Colors {
 }
 
 console.log('Все цветаnp:', Colors);
+import faker
