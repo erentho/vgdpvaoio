@@ -1,14 +1,18 @@
-import { blue, green, red } from 'chalk';
+type operatingSystem = 'windows' | 'macOs' | 'linux'; // строковый
+type pcNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9; // числовой
 
-const colors = [red, green, blue];
-const max = 10;
+type pc = {
+  os: operatingSystem;
+  num: pcNumber;
+  createdAt: Date;
+  createdAtISO: string;
+}; // объект
 
-let result = '';
-for (let i = 0; i < max; i++) {
-  result += colors[i % 3]('*');
-  if (i < max - 1) {
-    result += ' - ';
-  }
-}
+const myPc: pc = {
+  os: 'windows',
+  num: 4,
+  createdAt: new Date(),
+  createdAtISO: new Date().toISOString(),
+};
 
-console.log(result);
+console.log(myPc); // дата
