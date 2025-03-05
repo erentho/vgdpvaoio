@@ -1,29 +1,43 @@
-const obj = { a: 1, b: 2, c: 3 };
+import { faker } from '@faker-js/faker';
 
-let sum = 0;
-let errorMessage = null;
+type Person = {
+  name: string;
+  age: number | null | undefined;
+  email: string;
+};
 
-if (typeof obj !== 'object' || obj === null) {
-  errorMessage = 'Ошибка: Данные должны быть объектом.';
-  sum = NaN;
-} else {
-  const keys = Object.keys(obj) as ('a' | 'b' | 'c')[];
-  for (const key of keys) {
-    if (obj.hasOwnProperty(key)) {
-      const value = obj[key];
+const people: Person[] = Array.from({ length: 10 }, () => {
+  const person: Person = {
+    name: faker.person.fullName(),
+    age: faker.number.int({ min: 18, max: 65 }),
+    email: faker.internet.email(),
+  };
 
-      if (typeof value !== 'number') {
-        errorMessage = `Ошибка: Значение поля '${key}' не является числом.`;
-        sum = NaN;
-        break;
-      }
-      sum += value;
-    }
+  if (faker.datatype.boolean({ probability: 0.2 })) {
+    person.name = 'Stas';
+  }
+
+  if (faker.datatype.boolean({ probability: 0.1 })) {
+    person.age = null;
+  } else if (faker.datatype.boolean({ probability: 0.1 })) {
+    person.age = undefined;
+  }
+
+  return person;
+});
+
+console.log('Сгенерированные данные:', people);
+
+let result: string | number = 'Объект не найден';
+
+const stas = people.find((person) => person.name === 'Stas');
+
+if (stas) {
+  if (stas.age === null || stas.age === undefined) {
+    result = 'Возраста нет';
+  } else {
+    result = stas.age;
   }
 }
 
-if (errorMessage) {
-  console.error(errorMessage);
-}
-
-console.log('Сумма значений объекта:', sum);
+console.log('Возраст Stas:', result);
