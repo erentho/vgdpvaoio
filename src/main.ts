@@ -1,54 +1,29 @@
-type Product = {
-  id: string;
-  name: string;
-  description?: string | null;
-  price: number;
-};
+const obj = { a: 1, b: 2, c: 3 };
 
-const product1: Product = {
-  id: '1',
-  name: 'Товар 1',
-  price: 100,
-};
+let sum = 0;
+let errorMessage = null;
 
-const product2: Product = {
-  id: '2',
-  name: 'Товар 2',
-  description: null,
-  price: 200,
-};
+if (typeof obj !== 'object' || obj === null) {
+  errorMessage = 'Ошибка: Данные должны быть объектом.';
+  sum = NaN;
+} else {
+  const keys = Object.keys(obj) as ('a' | 'b' | 'c')[];
+  for (const key of keys) {
+    if (obj.hasOwnProperty(key)) {
+      const value = obj[key];
 
-const product3: Product = {
-  id: '3',
-  name: 'Товар 3',
-  description: '',
-  price: 300,
-};
+      if (typeof value !== 'number') {
+        errorMessage = `Ошибка: Значение поля '${key}' не является числом.`;
+        sum = NaN;
+        break;
+      }
+      sum += value;
+    }
+  }
+}
 
-const product4: Product = {
-  id: '4',
-  name: 'Товар 4',
-  description: 'Описание товара 4',
-  price: 400,
-};
+if (errorMessage) {
+  console.error(errorMessage);
+}
 
-const printProductDescription = (product: Product) => {
-  const description = product.description;
-
-  const result =
-    description === null || description === undefined ? 'не обнаружено' : description === '' ? 'пусто' : description;
-
-  console.log(result);
-};
-
-console.log('Product 1:');
-printProductDescription(product1);
-
-console.log('\nProduct 2:');
-printProductDescription(product2);
-
-console.log('\nProduct 3:');
-printProductDescription(product3);
-
-console.log('\nProduct 4:');
-printProductDescription(product4);
+console.log('Сумма значений объекта:', sum);
