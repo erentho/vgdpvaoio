@@ -1,21 +1,25 @@
-import { faker } from '@faker-js/faker';
-import { blue, red } from 'chalk';
-import dayjs from 'dayjs';
+// const sayHi = sayBuilder('Hi');
+// const sayBye = sayBuilder('Bye');
 
-const randomDate = faker.date.between({ from: '2020-01-01', to: '2030-12-31' });
-const dateString = dayjs(randomDate).format('YYYY-MM-DD');
+// console.log(sayHi('Ruslan')); // Hi, Ruslan!
+// console.log(sayHi('Maxim')); // Hi, Maxim!
 
-const date = dayjs(dateString);
-const today = dayjs();
+// console.log(sayBye('Ruslan')); // Bye, Ruslan!
+// console.log(sayBye('Maxim')); // Bye, Maxim!
+let обращение: string;
 
-if (!date.isValid()) {
-  console.error(red('Некорректный формат даты:', dateString));
-} else {
-  if (date.isBefore(today, 'day')) {
-    console.log(red(`Дата ${date.format('YYYY-MM-DD')} в прошлом!`));
-  } else if (date.isAfter(today, 'day')) {
-    console.log(blue(`Дата ${date.format('YYYY-MM-DD')} в будущем!`));
-  } else {
-    console.log(`Дата ${date.format('YYYY-MM-DD')} - сегодня.`);
-  }
-}
+const sayBuilder = (name: string): string => {
+  return `${обращение}, ${name}!`;
+};
+
+обращение = 'Hi';
+const sayHi = sayBuilder;
+
+обращение = 'Bye';
+const sayBye = sayBuilder;
+
+console.log(sayHi('Ruslan'));
+console.log(sayHi('Maxim'));
+
+console.log(sayBye('Ruslan'));
+console.log(sayBye('Maxim'));
