@@ -1,43 +1,21 @@
-import { faker } from '@faker-js/faker';
+const numbers = [1, 10, 11, 12, 21, 61, 85, 123, 1.5, -12];
 
-type Person = {
-  name: string;
-  age: number | null | undefined;
-  email: string;
-};
-
-const people: Person[] = Array.from({ length: 10 }, () => {
-  const person: Person = {
-    name: faker.person.fullName(),
-    age: faker.number.int({ min: 18, max: 65 }),
-    email: faker.internet.email(),
-  };
-
-  if (faker.datatype.boolean({ probability: 0.2 })) {
-    person.name = 'Stas';
-  }
-
-  if (faker.datatype.boolean({ probability: 0.1 })) {
-    person.age = null;
-  } else if (faker.datatype.boolean({ probability: 0.1 })) {
-    person.age = undefined;
-  }
-
-  return person;
-});
-
-console.log('Сгенерированные данные:', people);
-
-let result: string | number = 'Объект не найден';
-
-const stas = people.find((person) => person.name === 'Stas');
-
-if (stas) {
-  if (stas.age === null || stas.age === undefined) {
-    result = 'Возраста нет';
+for (const num of numbers) {
+  if (num % 1 !== 0) {
+    console.log(`Для ${num}: не является целым числом`);
   } else {
-    result = stas.age;
+    if (num <= 1) {
+      console.log(`Для ${num}: 1`);
+    } else {
+      let biggestNum = 1;
+
+      for (let i = 2; i <= Math.floor(num / 2); i++) {
+        if (num % i === 0) {
+          biggestNum = i;
+        }
+      }
+
+      console.log(`Для ${num}: ${biggestNum}`);
+    }
   }
 }
-
-console.log('Возраст Stas:', result);
