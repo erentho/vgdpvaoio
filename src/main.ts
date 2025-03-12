@@ -1,21 +1,21 @@
-const numbers = [1, 10, 11, 12, 21, 61, 85, 123, 1.5, -12];
+import { faker } from '@faker-js/faker';
+import { blue, red } from 'chalk';
+import dayjs from 'dayjs';
 
-for (const num of numbers) {
-  if (num % 1 !== 0) {
-    console.log(`Для ${num}: не является целым числом`);
+const randomDate = faker.date.between({ from: '2020-01-01', to: '2030-12-31' });
+const dateString = dayjs(randomDate).format('YYYY-MM-DD');
+
+const date = dayjs(dateString);
+const today = dayjs();
+
+if (!date.isValid()) {
+  console.error(red('Некорректный формат даты:', dateString));
+} else {
+  if (date.isBefore(today, 'day')) {
+    console.log(red(`Дата ${date.format('YYYY-MM-DD')} в прошлом!`));
+  } else if (date.isAfter(today, 'day')) {
+    console.log(blue(`Дата ${date.format('YYYY-MM-DD')} в будущем!`));
   } else {
-    if (num <= 1) {
-      console.log(`Для ${num}: 1`);
-    } else {
-      let biggestNum = 1;
-
-      for (let i = 2; i <= Math.floor(num / 2); i++) {
-        if (num % i === 0) {
-          biggestNum = i;
-        }
-      }
-
-      console.log(`Для ${num}: ${biggestNum}`);
-    }
+    console.log(`Дата ${date.format('YYYY-MM-DD')} - сегодня.`);
   }
 }
