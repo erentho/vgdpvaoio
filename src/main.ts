@@ -1,25 +1,17 @@
-// const sayHi = sayBuilder('Hi');
-// const sayBye = sayBuilder('Bye');
+const шифр = 'ntg ajuk fjbydv vikjo citvikhh yd mkjidydv qjujhpiyco. ptdvijoh!';
+const перемешанный = 'oak lgypb wited zts qgfch tuki oak mjrn xtv';
+const норм = 'the quick brown fox jumps over the lazy dog';
 
-// console.log(sayHi('Ruslan')); // Hi, Ruslan!
-// console.log(sayHi('Maxim')); // Hi, Maxim!
+const соответсвия: { [key: string]: string } = {};
+for (let i = 0; i < норм.length; i++) {
+  if (норм[i] !== ' ') {
+    соответсвия[перемешанный[i]] = норм[i];
+  }
+}
 
-// console.log(sayBye('Ruslan')); // Bye, Ruslan!
-// console.log(sayBye('Maxim')); // Bye, Maxim!
-let обращение: string;
+let расшифрованный = '';
+for (const символ of шифр) {
+  расшифрованный += соответсвия[символ] || символ;
+}
 
-const sayBuilder = (name: string): string => {
-  return `${обращение}, ${name}!`;
-};
-
-обращение = 'Hi';
-const sayHi = sayBuilder;
-
-обращение = 'Bye';
-const sayBye = sayBuilder;
-
-console.log(sayHi('Ruslan'));
-console.log(sayHi('Maxim'));
-
-console.log(sayBye('Ruslan'));
-console.log(sayBye('Maxim'));
+console.log(расшифрованный);
