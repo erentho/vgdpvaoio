@@ -1,15 +1,23 @@
-import { faker } from '@faker-js/faker/locale/en';
+const storage = [
+  { age: 10, name: 'first' },
+  { age: 20, name: 'second' },
+  { age: 30, name: 'third' },
+  { age: 40, name: 'fourth' },
+];
 
-const people = Array.from({ length: 20 }, () => ({
-  name: faker.person.fullName(),
-  age: faker.number.int({ min: 5, max: 30 }),
-  city: faker.location.city(),
-}));
+const smartSearch = (arr: any[], property: any, value: any) => {
+  return arr.find((item) => item[property] === value);
+};
 
-const personOver10 = people.find((person) => person.age > 10);
+const person1 = smartSearch(storage, 'age', 30);
+// { age: 30, name: 'third' }
 
-if (personOver10) {
-  console.log('Найден человек старше 10 лет:', personOver10);
-} else {
-  console.log('В массиве нет людей старше 10 лет.');
-}
+const person2 = smartSearch(storage, 'age', 10);
+// { age: 10, name: 'first' }
+
+const person3 = smartSearch(storage, 'name', 'second');
+// { age: 20, name: 'second' }
+
+console.log(person1);
+console.log(person2);
+console.log(person3);
