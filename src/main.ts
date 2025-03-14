@@ -1,23 +1,17 @@
-const storage = [
-  { age: 10, name: 'first' },
-  { age: 20, name: 'second' },
-  { age: 30, name: 'third' },
-  { age: 40, name: 'fourth' },
-];
+import { faker } from '@faker-js/faker';
 
-const smartSearch = (arr: any[], property: any, value: any) => {
-  return arr.find((item) => item[property] === value);
+const users = Array.from({ length: 100 }, () => ({
+  firstName: faker.person.firstName(),
+  name: faker.person.fullName(),
+  email: faker.internet.email(),
+}));
+
+const getRandomElements = (arr: any[], probability: number): any[] => {
+  return arr.filter(() => Math.random() < probability);
 };
 
-const person1 = smartSearch(storage, 'age', 30);
-// { age: 30, name: 'third' }
+const randomUsers = getRandomElements(users, 0.3);
 
-const person2 = smartSearch(storage, 'age', 10);
-// { age: 10, name: 'first' }
-
-const person3 = smartSearch(storage, 'name', 'second');
-// { age: 20, name: 'second' }
-
-console.log(person1);
-console.log(person2);
-console.log(person3);
+console.log('Количество пользователей в массиве:', users.length);
+console.log('Случайно выбранные пользователи:', randomUsers.length);
+console.log('Пример случайно выбранных пользователей:', randomUsers.slice(0, 5)); // Выводим первые 5
