@@ -1,17 +1,25 @@
-import { faker } from '@faker-js/faker';
-
-const users = Array.from({ length: 100 }, () => ({
-  firstName: faker.person.firstName(),
-  name: faker.person.fullName(),
-  email: faker.internet.email(),
-}));
-
-const getRandomElements = (arr: any[], probability: number): any[] => {
-  return arr.filter(() => Math.random() < probability);
+type User = {
+  name: string;
+  age: number;
 };
 
-const randomUsers = getRandomElements(users, 0.3);
+let users: User[] = [
+  { name: 'Пользователь-1', age: 1 },
+  { name: 'Пользователь-21', age: 21 },
+  { name: 'Пользователь-30', age: 30 },
+  { name: 'Пользователь-14', age: 14 },
+  { name: 'Пользователь-18', age: 18 },
+  { name: 'Пользователь--1', age: -1 },
+  { name: 'Пользователь-1', age: 1 },
+];
 
-console.log('Количество пользователей в массиве:', users.length);
-console.log('Случайно выбранные пользователи:', randomUsers.length);
-console.log('Пример случайно выбранных пользователей:', randomUsers.slice(0, 5)); // Выводим первые 5
+// ... Ваш код ...
+users = users.filter((user) => user.age >= 18);
+console.log(users);
+/* Ожидаемый вывод:
+[
+  { name: 'Пользователь-21', age: 21 },
+  { name: 'Пользователь-30', age: 30 },
+  { name: 'Пользователь-18', age: 18 },
+]
+ */
