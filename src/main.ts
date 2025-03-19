@@ -1,22 +1,35 @@
-const storage = [
-  { age: 10, name: 'first' },
-  { age: 20, name: 'second' },
-  { age: 30, name: 'third' },
-  { age: 40, name: 'fourth' },
-];
+import { green, red } from 'chalk';
 
-const storage2 = storage.map((person) => ({
-  age: person.name,
-  name: person.age,
-  reversed: true,
-}));
+const isPalindrome = (word: string) => {
+  const reversedWord = word.split('').reverse().join('');
 
-console.log(storage2);
-/* Ожидаемый вывод:
-[
-  { age: 'first', name: 10, reversed: true },
-  { age: 'second', name: 20, reversed: true },
-  { age: 'third', name: 30, reversed: true },
-  { age: 'fourth', name: 40, reversed: true }
-]
-*/
+  return word.includes(word);
+};
+const tests = [
+  ['топот', true],
+  ['пот', false],
+  ['потоп', true],
+  ['кабак', true],
+  ['(())', false],
+  ['табат', true],
+  ['abab', false],
+  ['топпот', true],
+  ['()()', false],
+  ['', true],
+  ['123321', true],
+  ['())(', true],
+  ['abba', true],
+  ['а роза упала на лапу азора', false], // Пробелы не совпадают!
+] as const;
+
+for (const test of tests) {
+  const [word, expected] = test;
+
+  const result = isPalindrome(word);
+  if (result !== expected) {
+    console.log(red(`Для слова "${word}" тест не прошел. Ожидалось: ${expected} | Получено: ${result}`));
+    continue;
+  }
+
+  console.log(green(`Слово "${word}" успешно. Результат: ${result}`));
+}
