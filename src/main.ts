@@ -1,25 +1,22 @@
-type User = {
-  name: string;
-  age: number;
-};
-
-let users: User[] = [
-  { name: 'Пользователь-1', age: 1 },
-  { name: 'Пользователь-21', age: 21 },
-  { name: 'Пользователь-30', age: 30 },
-  { name: 'Пользователь-14', age: 14 },
-  { name: 'Пользователь-18', age: 18 },
-  { name: 'Пользователь--1', age: -1 },
-  { name: 'Пользователь-1', age: 1 },
+const storage = [
+  { age: 10, name: 'first' },
+  { age: 20, name: 'second' },
+  { age: 30, name: 'third' },
+  { age: 40, name: 'fourth' },
 ];
 
-// ... Ваш код ...
-users = users.filter((user) => user.age >= 18);
-console.log(users);
+const storage2 = storage.map((person) => ({
+  age: person.name,
+  name: person.age,
+  reversed: true,
+}));
+
+console.log(storage2);
 /* Ожидаемый вывод:
 [
-  { name: 'Пользователь-21', age: 21 },
-  { name: 'Пользователь-30', age: 30 },
-  { name: 'Пользователь-18', age: 18 },
+  { age: 'first', name: 10, reversed: true },
+  { age: 'second', name: 20, reversed: true },
+  { age: 'third', name: 30, reversed: true },
+  { age: 'fourth', name: 40, reversed: true }
 ]
- */
+*/
