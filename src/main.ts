@@ -1,35 +1,11 @@
-import { green, red } from 'chalk';
-
-const isPalindrome = (word: string) => {
-  const reversedWord = word.split('').reverse().join('');
-
-  return word.includes(word);
+const mergeToNewObject = (a: any, b: any) => {
+  return { ...a, ...b };
 };
-const tests = [
-  ['топот', true],
-  ['пот', false],
-  ['потоп', true],
-  ['кабак', true],
-  ['(())', false],
-  ['табат', true],
-  ['abab', false],
-  ['топпот', true],
-  ['()()', false],
-  ['', true],
-  ['123321', true],
-  ['())(', true],
-  ['abba', true],
-  ['а роза упала на лапу азора', false], // Пробелы не совпадают!
-] as const;
 
-for (const test of tests) {
-  const [word, expected] = test;
+const obj1 = { a: 10, b: 100, c: 1 };
+const obj2 = { a: 20, b: 200, e: 2 };
+const obj3 = mergeToNewObject(obj1, obj2);
 
-  const result = isPalindrome(word);
-  if (result !== expected) {
-    console.log(red(`Для слова "${word}" тест не прошел. Ожидалось: ${expected} | Получено: ${result}`));
-    continue;
-  }
-
-  console.log(green(`Слово "${word}" успешно. Результат: ${result}`));
-}
+console.log(obj1); // { a: 10, b: 100, c: 1 }
+console.log(obj2); // { a: 20, b: 200, e: 2 }
+console.log(obj3); // { a: 20, b: 200, c: 1, e: 2 }
