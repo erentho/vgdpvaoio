@@ -1,29 +1,20 @@
-// Используя reduce, напишите функцию, которая (каждый пункт отдельная функция):
-// Фильтрует только положительные числа
-// Создаёт массив только с уникальными значениями
-// Создает обратный массив (у которого обратная последовательность элемента)
-// Превращает массив в объект:
+const values = [
+  [1, 100],
+  [2, 200],
+  [3, 300],
+  [1, 2],
+  [3, 400],
+  [4, 500],
+  [1, 99],
+];
 
-// Фильтрует только положительные числа
-const filterPositiveNumbers = (arr: number[]): number[] =>
-  arr.reduce((acc: number[], num: number) => (num > 0 ? [...acc, num] : acc), []);
+const result = values.reduce((acc: { [key: string]: { count: number; sum: number } }, [grade, count]) => {
+  const gradeStr = String(grade);
+  acc[gradeStr] = {
+    count: (acc[gradeStr]?.count || 0) + 1,
+    sum: (acc[gradeStr]?.sum || 0) + count,
+  };
+  return acc;
+}, {});
 
-// Фильтрует только строки
-const filterStrings = (arr: any[]): string[] =>
-  arr.reduce((acc: string[], item: any) => (typeof item === 'string' ? [...acc, item] : acc), []);
-
-// Создаёт массив только с уникальными значениями
-const getUniqueValues = (arr: any[]): any[] =>
-  arr.reduce((acc: any[], item: any) => (acc.includes(item) ? acc : [...acc, item]), []);
-
-// Создает обратный массив (у которого обратная последовательность элемента)
-const reverseArray = (arr: any[]): any[] => arr.reduce((acc: any[], item: any) => [item, ...acc], []);
-
-// Превращает массив в объект:
-const values = [10, 'just_name', true];
-const myObject = values.reduce(
-  (acc: { [key: string]: any }, value: any, index: number) => ({ ...acc, [`key-${index + 1}`]: value }),
-  {},
-);
-console.log(myObject);
-// { 'key-1': 10, 'key-2': 'just_name', 'key-3': true }
+console.log(result);
