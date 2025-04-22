@@ -1,25 +1,23 @@
-const storage = [
-  'nick',
-  'nack',
-  'nock',
-  [
-    {
-      first: 'forecast',
-      child: null,
-    },
-    {
-      first: 'castfore',
-      child: null,
-    },
-    'zzz',
-  ],
-  'no-1',
-  'no-2',
+const matrix = [
+  [1, 2, 4],
+  [3, 5, 4],
+  [4, 4, 7],
+  [3, 5, 9],
 ];
 
-const [, , , [a, b, ...c], ...d] = storage;
-const { first: f1 } = a as { first: string; child: null };
+const flatMassive = (matrix: number[][]): number[] =>
+  matrix.reduce((acc: number[], arr: number[]) => {
+    for (const num of arr) {
+      if (!acc.includes(num)) {
+        acc.push(num);
+      }
+    }
+    return acc;
+  }, []);
 
-console.log(d);
-console.log(c);
-console.log(b);
+console.log(flatMassive(matrix));
+
+const flatMassive2 = (matrix: number[][]): number[] =>
+  matrix.flat().filter((num, index, arr) => arr.indexOf(num) === index);
+
+console.log(flatMassive2(matrix));
