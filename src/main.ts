@@ -1,23 +1,21 @@
-const matrix = [
-  [1, 2, 4],
-  [3, 5, 4],
-  [4, 4, 7],
-  [3, 5, 9],
-];
+const numbers = [0, 2, 3, 1, 4];
 
-const flatMassive = (matrix: number[][]): number[] =>
-  matrix.reduce((acc: number[], arr: number[]) => {
-    for (const num of arr) {
-      if (!acc.includes(num)) {
-        acc.push(num);
-      }
+let largest: number = numbers[0];
+
+for (let i = 1; i < numbers.length; i++) {
+  if (numbers[i] > largest) {
+    largest = numbers[i];
+  }
+}
+
+let secondLargest: number | undefined = undefined;
+
+for (let i = 0; i < numbers.length; i++) {
+  if (numbers[i] < largest) {
+    if (secondLargest === undefined || numbers[i] > secondLargest) {
+      secondLargest = numbers[i];
     }
-    return acc;
-  }, []);
+  }
+}
 
-console.log(flatMassive(matrix));
-
-const flatMassive2 = (matrix: number[][]): number[] =>
-  matrix.flat().filter((num, index, arr) => arr.indexOf(num) === index);
-
-console.log(flatMassive2(matrix));
+console.log(secondLargest);
