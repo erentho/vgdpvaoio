@@ -1,26 +1,24 @@
-type Paginated<T = any> = {
-  total: number;
-  limit: number;
-  offset: number;
-  items: T[];
-};
-
 type Person = {
   name: string;
+  age: number;
+  nickname: string;
+  photo: string;
 };
 
-const responseOfPersons: Paginated<Person> = {
-  total: 10,
-  limit: 5,
-  offset: 0,
-  items: [{ name: 'P1' }],
+type First = Partial<Readonly<Omit<Person, 'photo'>>>;
+
+type Second = Required<Pick<First, 'name' | 'nickname'>>;
+
+const firstExample: First = {
+  name: 'Alice',
+  age: 30,
+  nickname: 'Ali',
 };
 
-const responseOfSomething: Paginated = {
-  total: 10,
-  limit: 5,
-  offset: 0,
-  items: [],
+const secondExample: Second = {
+  name: 'Bob',
+  nickname: 'Bobby',
 };
-console.log(responseOfPersons);
-console.log(responseOfSomething);
+
+console.log(firstExample);
+console.log(secondExample);
